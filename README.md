@@ -8,3 +8,8 @@ a tools used by web
 2. node 网络参数的下发与维护
 3. event 存档
 
+
+
+### GCC
+
+https://www.msys2.org/

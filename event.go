@@ -5,14 +5,14 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/shankusu2017/proto_pb/go/proto"
 	pb "google.golang.org/protobuf/proto"
-	"io/ioutil"
+	"io"
 	"log"
 )
 
-func eventPost(c *gin.Context) {
+func EventPost(c *gin.Context) {
 	ip := c.RemoteIP()
 
-	bodyBytes, err := ioutil.ReadAll(c.Request.Body)
+	bodyBytes, err := io.ReadAll(c.Request.Body)
 	if err != nil {
 		log.Printf("0x2dd56b9d read request body fail:%s, ip:%s", err.Error(), ip)
 		return
@@ -37,9 +37,10 @@ func eventPost(c *gin.Context) {
 	}
 
 	event := msg.GetEvent()
-	if event == proto.Event_STARTED ||
-		event == proto.Event_KEEPALIVE {
-		nodeEvent(c, &msg)
+	if event == proto.Event_STARTED {
+		NodeBootEvent(c, &msg)
+	} else if event == proto.Event_KEEPALIVE {
+		NodePingEvent(c, &msg)
 	} else {
 		log.Printf("0x1ae4262b recv invalid event(%s)", event)
 		return
