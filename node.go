@@ -29,12 +29,6 @@ var (
 	nodeMgr *nodeMgrT
 )
 
-func InitNodeMgr() {
-	nodeMgr = &nodeMgrT{}
-	nodeMgr.nodeMap = make(map[string]*NodeT)
-	go nodeMgr.loopScan()
-}
-
 func (mgr *nodeMgrT) addNode(node *NodeT) {
 	mgr.dataMtx.Lock()
 	defer mgr.dataMtx.Unlock()
@@ -67,19 +61,6 @@ func (mgr *nodeMgrT) getNodeIPByRole(role string) []string {
 	}
 
 	return ipList
-}
-
-func GetNodeAll() []NodeT {
-	nodeMgr.dataMtx.Lock()
-	defer nodeMgr.dataMtx.Unlock()
-
-	lst := make([]NodeT, 0)
-
-	for _, node := range nodeMgr.nodeMap {
-		lst = append(lst, *node)
-	}
-
-	return lst
 }
 
 func (mgr *nodeMgrT) loopScan() {
@@ -126,7 +107,26 @@ func nodeEvent(c *gin.Context, msg *proto.MsgEventPost) {
 	}
 }
 
-func nodeRepeaterGet(c *gin.Context) {
+func NodeMgrInit() {
+	nodeMgr = &nodeMgrT{}
+	nodeMgr.nodeMap = make(map[string]*NodeT)
+	go nodeMgr.loopScan()
+}
+
+func NodeGetAll() []NodeT {
+	nodeMgr.dataMtx.Lock()
+	defer nodeMgr.dataMtx.Unlock()
+
+	lst := make([]NodeT, 0)
+
+	for _, node := range nodeMgr.nodeMap {
+		lst = append(lst, *node)
+	}
+
+	return lst
+}
+
+func NodeRepeaterGet(c *gin.Context) {
 	ip := c.RemoteIP()
 
 	bodyBytes, err := ioutil.ReadAll(c.Request.Body)
