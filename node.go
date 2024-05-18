@@ -351,6 +351,7 @@ func NodeRepeaterGet(c *gin.Context) {
 		node := &proto.RepeaterServerNode{IPv4: iP}
 		rsp.Servers = append(rsp.Servers, node)
 	}
+	log.Printf("DEBUG 0x2eda1c94 iplst:%v", ipLst)
 
 	c.ProtoBuf(http.StatusOK, &rsp)
 }
