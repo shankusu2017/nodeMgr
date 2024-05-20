@@ -11,7 +11,7 @@ import (
 
 func main() {
 	rand.NewSource(time.Now().UnixNano())
-	utils.InitPac("./etc/cnIP.cfg")
+	utils.InitPac("./etc/cnIP.cfg", "./etc/outIP.cfg")
 	NodeMgrInit("./etc/nodeInfo.db")
 
 	r := gin.Default()
