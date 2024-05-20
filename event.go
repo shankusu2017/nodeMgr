@@ -47,6 +47,8 @@ func EventPost(c *gin.Context) {
 		NodeBootEvent(c, &msg)
 	} else if event == proto.Event_KEEPALIVE {
 		NodePingEvent(c, &msg)
+	} else if event == proto.Event_PINGLOSTPERCENT20 || event == proto.Event_PINGACKNULL {
+		NodeAbnormalEvent(c, &msg)
 	} else {
 		log.Printf("0x1ae4262b recv invalid event(%s)", event)
 		return

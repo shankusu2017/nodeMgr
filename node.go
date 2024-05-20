@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/shankusu2017/proto_pb/go/proto"
@@ -280,6 +281,16 @@ func NodePingEvent(c *gin.Context, msg *proto.MsgEventPost) {
 	if err != nil {
 		log.Printf("0x56d90c0b ping update err:%s", err)
 	}
+}
+
+func NodeAbnormalEvent(c *gin.Context, msg *proto.MsgEventPost) {
+	// 存DB
+	if msg.GetNode() == nil || msg.GetMachine() == nil || msg.GetMsg() == nil {
+		jsonTxt, _ := json.Marshal(msg)
+		log.Printf("ERROR 0x7e07ffea data has nil, cli.ip:%s, packet.json:%s", c.RemoteIP(), string(jsonTxt))
+		return
+	}
+	InsertNodeEvent(c.RemoteIP(), proto.Role(msg.GetNode().Role), msg.GetMsg().Msg, msg)
 }
 
 func NodeMgrInit(dbPath string) {
