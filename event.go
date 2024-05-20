@@ -79,6 +79,7 @@ func EventGet(c *gin.Context) {
 	} else {
 		tLst = eLst
 	}
+	log.Printf("DEBUG 0x52dce36d eType: %d", typeInt)
 
 	c.JSON(http.StatusOK, tLst)
 }
