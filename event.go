@@ -87,10 +87,10 @@ func EventHelp(c *gin.Context) {
 	textHelp := `
 	OPTIONS
     	 --type
-			STARTED: 0 \n
-			KEEPALIVE: 1 \n
-			PINGLOSTPERCENT20: 1000\n
-			PINGACKNULL: 1001 \n
+			STARTED: 0
+			KEEPALIVE: 1
+			PINGLOSTPERCENT20: 1000
+			PINGACKNULL: 1001
 			CLOSED: 65535
 	`
 
