@@ -7,6 +7,7 @@ import (
 	pb "google.golang.org/protobuf/proto"
 	"io"
 	"log"
+	"net/http"
 )
 
 func EventPost(c *gin.Context) {
@@ -21,7 +22,7 @@ func EventPost(c *gin.Context) {
 	var msg proto.MsgEventPost
 	err = pb.Unmarshal(bodyBytes, &msg)
 	if err != nil {
-		log.Printf("0x4842fc43 Invalid request body(%v), ip:%s", bodyBytes, ip)
+		log.Printf("0x5a9debca Invalid request body(%v), ip:%s", bodyBytes, ip)
 		return
 	}
 
@@ -45,4 +46,14 @@ func EventPost(c *gin.Context) {
 		log.Printf("0x1ae4262b recv invalid event(%s)", event)
 		return
 	}
+}
+
+func EventGet(c *gin.Context) {
+	eLst, err := SelectEventAll()
+	if err != nil {
+		log.Printf("0x4111d800 SelectEventAll fail: %s", err)
+		return
+	}
+
+	c.JSON(http.StatusOK, eLst)
 }

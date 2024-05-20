@@ -26,6 +26,16 @@ type NetConfigT struct {
 	Ver      string    `json:Ver`
 }
 
+type EventItemDBT struct {
+	Uuid     string    `json:Uuid`
+	IP       string    `json:IP`
+	RoleType int       `json:RoleType`
+	TS       time.Time `json:TS`
+	Ver      string    `json:Ver`
+	eType    string    `json:eType`
+	eMsg     string    `json:eMsg`
+}
+
 func openDB(dbPath string) *sql.DB {
 	db, err := sql.Open("sqlite3", dbPath)
 	if err != nil {
@@ -252,4 +262,34 @@ func InsertNodeEvent(ip string, role proto.Role, addMsg string, event *proto.Msg
 	}
 
 	return nil
+}
+
+func SelectEventAll() ([]*EventItemDBT, error) {
+	var retLst []*EventItemDBT
+
+	rows, err := dbHandle.Query("SELECT uuid, ip, roleType, ver, eventType, eventMsg, ts FROM nodeEventTbl")
+	if err != nil {
+		log.Printf("0x645df775 db.Query err:%s", err)
+		return retLst, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		event := &EventItemDBT{}
+		err = rows.Scan(&event.Uuid, &event.IP, &event.RoleType, &event.Ver, &event.eType, &event.eMsg, &event.TS)
+		if err != nil {
+			log.Printf("0x28f973da rows.Scan err:%s", err)
+			return nil, err
+		}
+		//buf, _ := json.Marshal(&node)
+		//log.Printf("jons:[%s]", string(buf))
+		retLst = append(retLst, event)
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Printf("0x144d7208 rows err:%s", err)
+		return []*EventItemDBT{}, err
+	}
+
+	return retLst, nil
 }
