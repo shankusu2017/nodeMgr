@@ -21,6 +21,7 @@ func main() {
 	r.POST(fmt.Sprintf("%s", url.URL_REPEATER_SERVER), NodeRepeaterGet)
 	r.POST(fmt.Sprintf("%s", url.URL_EVENT_POST), EventPost)
 	r.GET(fmt.Sprintf("%s", url.URL_EVENT_GET), EventGet)
+	r.GET(fmt.Sprintf("%s", url.URL_EVENT_HELP), EventHelp)
 
 	// 监听并在 0.0.0.0:7080 上启动服务
 	r.Run(fmt.Sprintf("%s:%d", "", url.PORT_NODEMGR)) // ":7080"

@@ -75,6 +75,8 @@ github.com/shankusu2017/url v0.0.0-20240515091556-fd393902e75f h1:AukWwiKV6up/6S
 github.com/shankusu2017/url v0.0.0-20240515091556-fd393902e75f/go.mod h1:miepUVL/CNOGHK5A8Mo19p81VVYf/VM1vuhdMIG0fLs=
 github.com/shankusu2017/url v0.0.0-20240520063600-3f1069757aca h1:0TD51j2d8w/KDX4eNNBfVi28N8UWpXCBRFtj/ezZ+o0=
 github.com/shankusu2017/url v0.0.0-20240520063600-3f1069757aca/go.mod h1:miepUVL/CNOGHK5A8Mo19p81VVYf/VM1vuhdMIG0fLs=
+github.com/shankusu2017/url v0.0.0-20240520071815-a10bee0eb427 h1:I9jUjDiAw40rsq0twhd4Bv9aY8+Mn6QcGtaSnH9IjV0=
+github.com/shankusu2017/url v0.0.0-20240520071815-a10bee0eb427/go.mod h1:miepUVL/CNOGHK5A8Mo19p81VVYf/VM1vuhdMIG0fLs=
 github.com/shankusu2017/utils v0.0.0-20240515021858-84c11d0d5fa7 h1:Ql0oEczHUAF5BYCYMNUCBGLOPcDKQPZsH4lnmiYGzII=
 github.com/shankusu2017/utils v0.0.0-20240515021858-84c11d0d5fa7/go.mod h1:39AjwgyPRzm480JQ+sWTZVYWJM3fnatHwDNTR1QzL8E=
 github.com/shankusu2017/utils v0.0.0-20240517121928-ad68a0c35508 h1:Ohx3tRPCmXKwpI3V5HBt0HOOjqAyA/yc3WhN0kKSXUY=

@@ -11,6 +11,10 @@ import (
 	"strconv"
 )
 
+type EventHelpT struct {
+	Text string `json:Text`
+}
+
 func EventPost(c *gin.Context) {
 	ip := c.RemoteIP()
 
@@ -77,4 +81,22 @@ func EventGet(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, tLst)
+}
+
+func EventHelp(c *gin.Context) {
+	textHelp := `
+	OPTIONS
+    	 --type
+			STARTED: 0 \n
+			KEEPALIVE: 1 \n
+			PINGLOSTPERCENT20: 1000\n
+			PINGACKNULL: 1001 \n
+			CLOSED: 65535
+	`
+
+	txt := &EventHelpT{
+		Text: textHelp,
+	}
+
+	c.JSON(http.StatusOK, &txt)
 }
