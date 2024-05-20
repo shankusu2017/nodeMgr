@@ -72,7 +72,7 @@ func EventGet(c *gin.Context) {
 	}
 	if typeInt != -1 {
 		for _, event := range eLst {
-			if event.eType == typeInt {
+			if event.EType == typeInt {
 				tLst = append(tLst, event)
 			}
 		}

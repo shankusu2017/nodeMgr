@@ -32,8 +32,8 @@ type EventItemDBT struct {
 	RoleType int       `json:RoleType`
 	TS       time.Time `json:TS`
 	Ver      string    `json:Ver`
-	eType    int       `json:eType`
-	eMsg     string    `json:eMsg`
+	EType    int       `json:EType`
+	EMsg     string    `json:EMsg`
 }
 
 func openDB(dbPath string) *sql.DB {
@@ -276,7 +276,7 @@ func SelectEventAll() ([]*EventItemDBT, error) {
 
 	for rows.Next() {
 		event := &EventItemDBT{}
-		err = rows.Scan(&event.Uuid, &event.IP, &event.RoleType, &event.Ver, &event.eType, &event.eMsg, &event.TS)
+		err = rows.Scan(&event.Uuid, &event.IP, &event.RoleType, &event.Ver, &event.EType, &event.EMsg, &event.TS)
 		if err != nil {
 			log.Printf("0x28f973da rows.Scan err:%s", err)
 			return nil, err
