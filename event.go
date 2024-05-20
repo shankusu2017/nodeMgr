@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func EventPost(c *gin.Context) {
@@ -55,5 +56,25 @@ func EventGet(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, eLst)
+	/* 过滤出指定类型的数据 */
+	typeArg := c.Query("type")
+	typeInt := -1
+	var tLst []*EventItemDBT
+	if len(typeArg) > 0 {
+		typeInt, err = strconv.Atoi(typeArg)
+		if err == nil {
+			typeInt = -1
+		}
+	}
+	if typeInt != -1 {
+		for _, event := range eLst {
+			if event.eType == typeInt {
+				tLst = append(tLst, event)
+			}
+		}
+	} else {
+		tLst = eLst
+	}
+
+	c.JSON(http.StatusOK, tLst)
 }

@@ -32,7 +32,7 @@ type EventItemDBT struct {
 	RoleType int       `json:RoleType`
 	TS       time.Time `json:TS`
 	Ver      string    `json:Ver`
-	eType    string    `json:eType`
+	eType    int       `json:eType`
 	eMsg     string    `json:eMsg`
 }
 
