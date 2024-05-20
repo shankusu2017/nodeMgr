@@ -8,7 +8,7 @@ require (
 	github.com/shankusu2017/constant v0.0.0-20240518032247-0f0c63e5b9be
 	github.com/shankusu2017/proto_pb v0.0.0-20240520060738-ba1a2519131c
 	github.com/shankusu2017/url v0.0.0-20240520071815-a10bee0eb427
-	github.com/shankusu2017/utils v0.0.0-20240517162654-e01f3ad6416c
+	github.com/shankusu2017/utils v0.0.0-20240520082158-699bd7543e14
 	google.golang.org/protobuf v1.34.1
 )
 

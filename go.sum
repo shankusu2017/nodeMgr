@@ -83,6 +83,8 @@ github.com/shankusu2017/utils v0.0.0-20240517121928-ad68a0c35508 h1:Ohx3tRPCmXKw
 github.com/shankusu2017/utils v0.0.0-20240517121928-ad68a0c35508/go.mod h1:39AjwgyPRzm480JQ+sWTZVYWJM3fnatHwDNTR1QzL8E=
 github.com/shankusu2017/utils v0.0.0-20240517162654-e01f3ad6416c h1:d3KAfKIa6B1sQ9EU1bbmm2iuwyK5MWvw/TVRkUuUZ7I=
 github.com/shankusu2017/utils v0.0.0-20240517162654-e01f3ad6416c/go.mod h1:39AjwgyPRzm480JQ+sWTZVYWJM3fnatHwDNTR1QzL8E=
+github.com/shankusu2017/utils v0.0.0-20240520082158-699bd7543e14 h1:nqIBfLDYo5w0oORV+mC00OX6IOYe+HTkIw92UYVr6lY=
+github.com/shankusu2017/utils v0.0.0-20240520082158-699bd7543e14/go.mod h1:39AjwgyPRzm480JQ+sWTZVYWJM3fnatHwDNTR1QzL8E=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
