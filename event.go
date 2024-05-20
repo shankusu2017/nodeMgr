@@ -66,7 +66,7 @@ func EventGet(c *gin.Context) {
 	var tLst []*EventItemDBT
 	if len(typeArg) > 0 {
 		typeInt, err = strconv.Atoi(typeArg)
-		if err == nil {
+		if err != nil {
 			typeInt = -1
 		}
 	}
