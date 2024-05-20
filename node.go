@@ -195,6 +195,7 @@ func NodeBootEvent(c *gin.Context, msg *proto.MsgEventPost) {
 	uuid := mMachine.GetUUID()
 	ver := mNode.GetVer()
 	isNewNode := false
+	addMsg := ""
 
 	// 新生成的 Node 还是已有的 Node?
 	node = nodeMgr.findNode(uuid)
@@ -223,6 +224,7 @@ func NodeBootEvent(c *gin.Context, msg *proto.MsgEventPost) {
 				log.Printf("ERROR 0x74b3cf20 switchNodeSubNetIdRoleType fail")
 				return
 			}
+			addMsg = fmt.Sprintf("switch 2 newType: %d, subNet: %d", node.RoleType, node.SubId)
 		}
 	}
 
@@ -237,8 +239,14 @@ func NodeBootEvent(c *gin.Context, msg *proto.MsgEventPost) {
 		UpdateNetConfigRowByUuid(node)
 	}
 
+	addMsg = fmt.Sprintf("%s roleType.now: %d", addMsg, node.RoleType)
+	eMsg := msg.GetMsg()
+	if eMsg != nil {
+		addMsg = fmt.Sprintf("%s [%s]", eMsg.Msg, addMsg)
+	}
+
 	// 存DB
-	InsertNodeEvent(ip, msg)
+	InsertNodeEvent(ip, proto.Role(node.RoleType), addMsg, msg)
 
 	{
 		var rsp proto.MsgEventRsp

@@ -233,7 +233,7 @@ func InsertNetConfig(node *NodeT) error {
 }
 
 // InsertNodeEvent 新增一条数据
-func InsertNodeEvent(ip string, event *proto.MsgEventPost) error {
+func InsertNodeEvent(ip string, role proto.Role, addMsg string, event *proto.MsgEventPost) error {
 	rowInfo, _ := json.Marshal(*event)
 	//	create table IF NOT EXISTS nodeEventTbl (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, uuid text, ip text, ver text, eventType INT, eventMsg text, roleType INT, ts timestamp);
 	stmt, err := dbHandle.Prepare("INSERT INTO nodeEventTbl(uuid, ip, roleType, ver, eventType, eventMsg, ts) VALUES ( ?, ?, ?, ?, ?, ?, ? )")
@@ -244,7 +244,7 @@ func InsertNodeEvent(ip string, event *proto.MsgEventPost) error {
 	}
 	defer stmt.Close() // Prepared statements take up server resources and should be closed after use.
 
-	_, err = stmt.Exec(event.Machine.GetUUID(), ip, event.Node.GetRole(), event.Node.GetVer(), event.Event, "", time.Now())
+	_, err = stmt.Exec(event.Machine.GetUUID(), ip, role, event.Node.GetVer(), event.Event, addMsg, time.Now())
 	if err != nil {
 		err = errors.New(fmt.Sprintf("0x2bda2151 insert fail:%s, %v", err, rowInfo))
 		log.Printf(err.Error())
